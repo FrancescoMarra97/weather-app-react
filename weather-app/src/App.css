@@ -1,0 +1,88 @@
+
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.app-container {
+  background: white;
+  padding: 2rem 3rem;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  width: 320px;
+  text-align: center;
+}
+
+h1 {
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+.input-group {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.input-group input {
+  flex: 1; /* l’input occupa tutto lo spazio disponibile */
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #74ebd5;
+  border-radius: 8px;
+  transition: border-color 0.3s ease;
+}
+
+.input-group input:focus {
+  border-color: #ACB6E5;
+  outline: none;
+}
+
+input[type="text"] {
+  width: 70%;
+  padding: 0.5rem 1rem;
+  border: 2px solid #74ebd5;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+  border-color: #ACB6E5;
+  outline: none;
+}
+
+button {
+  padding: 0.7rem 1.5rem;
+  background-color: #74ebd5;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ACB6E5;
+}
+
+.weather-info {
+  margin-top: 2rem;
+  color: #555;
+}
+
+.weather-info h2 {
+  margin-bottom: 0.5rem;
+}
+
+.weather-info p {
+  margin: 0.3rem 0;
+  font-size: 1.1rem;
+}
