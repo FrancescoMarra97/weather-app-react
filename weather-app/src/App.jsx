@@ -45,7 +45,7 @@ const fetchWeather = async () => {
       src={`https://openweathermap.org/img/wn/${weather.weather[0].icon}@2x.png`}
       alt={weather.weather[0].description}
     />
-    <p>Temperatura: {weather.main.temp}°C</p>
+    <p>Temperatura: {weather.main.temp.toFixed(1)}°C</p>
     <p>Condizioni: {weather.weather[0].description}</p>
   </div>
 )}
