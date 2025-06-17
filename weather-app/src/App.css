@@ -1,5 +1,3 @@
-
-
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
@@ -24,14 +22,15 @@ h1 {
   margin-bottom: 1.5rem;
   color: #333;
 }
+
 .input-group {
   display: flex;
   justify-content: center;
   align-items: center;
-
 }
+
 .input-group input {
-  flex: 1; /* l’input occupa tutto lo spazio disponibile */
+  flex: 1;
   padding: 0.5rem 1rem;
   font-size: 1rem;
   border: 2px solid #74ebd5;
@@ -85,4 +84,51 @@ button:hover {
 .weather-info p {
   margin: 0.3rem 0;
   font-size: 1.1rem;
+}
+
+.error-message {
+  color: red;
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.mt-3 {
+  margin-top: 1.5rem;
+  text-align: left;
+}
+
+.mt-3 h5 {
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: #333;
+  font-size: 1.1rem;
+}
+
+/* Nuovo stile per la search history con div separati */
+.search-history-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* Spazio tra i div */
+  max-height: 180px;
+  overflow-y: auto;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.search-history-item {
+  padding: 0.6rem 1rem;
+  background-color: #f9fcff;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease, color 0.2s ease;
+  color: #555;
+  font-size: 1rem;
+  border: 1px solid transparent; /* evita “saltellamenti” al hover */
+}
+
+.search-history-item:hover {
+  background-color: #74ebd5;
+  color: white;
+  font-weight: 600;
 }
