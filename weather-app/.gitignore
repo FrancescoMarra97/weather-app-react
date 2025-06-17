@@ -11,6 +11,7 @@ node_modules
 dist
 dist-ssr
 *.local
+node_modules/lucid.js.map
 
 # Editor directories and files
 .vscode/*
