@@ -87,7 +87,7 @@ button:hover {
   /* leggero rilievo */
 }
 
-}
+
 
 /* Error message */
 .error-message {
@@ -108,6 +108,8 @@ button:hover {
 }
 
 .search-history-item {
+  padding-right: 1.8rem;
+  position: relative;
   background-color: #d7e0ff;
   color: #1a2a6c;
   padding: 0.5rem 1rem;
@@ -117,6 +119,10 @@ button:hover {
   font-weight: 600;
   box-shadow: 0 2px 5px rgba(26, 42, 108, 0.2);
   transition: background-color 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .search-history-item:hover,
@@ -125,6 +131,10 @@ button:hover {
   outline: none;
 }
 
+
+
+
+/* Forecast section */
 .forecast-grid {
   display: flex;
   overflow-x: auto;

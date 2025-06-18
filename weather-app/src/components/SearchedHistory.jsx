@@ -16,6 +16,7 @@ export default function SearchedHistory({ searchHistory, onSelect }) {
                     >
                         {item}
                     </div>
+
                 ))}
             </div>
         </div>
