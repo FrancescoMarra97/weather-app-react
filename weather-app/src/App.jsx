@@ -104,6 +104,12 @@ function App() {
       });
 
       setCity(selectedCity);
+
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+
     } catch (error) {
       console.error(error);
       setError(error);
@@ -144,7 +150,7 @@ function App() {
       setCity(weatherData.name);
     } catch (error) {
       console.error(error);
-      setError(error);
+      setError(null);
       setWeather(null);
       setForecast(null);
     }
@@ -163,7 +169,7 @@ function App() {
       },
       (error) => {
         console.error('Errore nella geolocalizzazione:', error);
-        setError(error);
+        setError(null);
       }
     );
   }, []);
@@ -185,11 +191,11 @@ function App() {
 
       {weather && <WeatherInfo weather={weather} />}
 
-      {/*   {error && (
+      {error && (
         <div className="error-message">
           <p>{error.message}</p>
         </div>
-      )} */}
+      )}
 
       {forecast && <Forecast3H forecast={forecast} />}
 
