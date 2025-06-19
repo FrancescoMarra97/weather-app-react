@@ -12,6 +12,7 @@ function App() {
   const [error, setError] = useState(null)
   const [searchHistory, setSearchHistory] = useState([])
   const [forecast, setForecast] = useState(null)
+  const [coords, setCoords] = useState(null)
 
   const dailyForecast = forecast?.list.filter(item =>
     item.dt_txt.includes("12:00:00")
@@ -51,15 +52,16 @@ function App() {
 
       setForecast(forecastData);
       setWeather(weatherData);
-      setCity(''); // Pulisce il campo di input dopo la ricerca
       setError(null);
 
-      setSearchHistory(prevHistory => {
-        if (!city || city.trim() === '') return prevHistory; // esce se city è vuota o solo spazi
+      const currentCity = city.trim();
+      if (!currentCity) return; // esce se city è vuota o solo spazi
 
-        const cityLower = city.toLowerCase();
+      setCity('');
+      setSearchHistory(prevHistory => {
+        const cityLower = currentCity.toLowerCase();
         const filtered = prevHistory.filter(c => c.toLowerCase() !== cityLower);
-        const newHistory = [city, ...filtered].slice(0, 20);
+        const newHistory = [currentCity, ...filtered].slice(0, 20);
         return newHistory;
       });
 
@@ -98,7 +100,7 @@ function App() {
         const filtered = prevHistory.filter(
           (c) => c.toLowerCase() !== lowerCity
         );
-        return [selectedCity, ...filtered].slice(0, 5);
+        return [selectedCity, ...filtered].slice(0, 20);
       });
 
       setCity(selectedCity);
@@ -109,6 +111,67 @@ function App() {
       setForecast(null);
     }
   };
+
+  const fetchWeatherByCoords = async (latitude, longitude) => {
+    try {
+      const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric&lang=it`;
+      const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric&lang=it`;
+
+      const [weatherResponse, forecastResponse] = await Promise.all([
+        fetch(weatherUrl),
+        fetch(forecastUrl),
+      ]);
+
+      if (!weatherResponse.ok || !forecastResponse.ok) {
+        throw new Error('Errore nella richiesta');
+      }
+
+      const weatherData = await weatherResponse.json();
+      const forecastData = await forecastResponse.json();
+
+      setWeather(weatherData);
+      setForecast(forecastData);
+      setError(null);
+
+      setSearchHistory((prevHistory) => {
+        const cityName = weatherData.name;
+        const filtered = prevHistory.filter(
+          (c) => c.toLowerCase() !== cityName.toLowerCase()
+        );
+        return [cityName, ...filtered].slice(0, 20);
+      });
+
+      setCity(weatherData.name);
+    } catch (error) {
+      console.error(error);
+      setError(error);
+      setWeather(null);
+      setForecast(null);
+    }
+  };
+
+  useEffect(() => {
+    if (!navigator.geolocation) {
+      console.error('Geolocalizzazione non supportata dal browser');
+      return;
+    }
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const { latitude, longitude } = position.coords;
+        setCoords({ latitude, longitude });
+        fetchWeatherByCoords(latitude, longitude);
+      },
+      (error) => {
+        console.error('Errore nella geolocalizzazione:', error);
+        setError(error);
+      }
+    );
+  }, []);
+
+
+
+
+
 
 
   return (
@@ -122,11 +185,11 @@ function App() {
 
       {weather && <WeatherInfo weather={weather} />}
 
-      {error && (
+      {/*   {error && (
         <div className="error-message">
           <p>{error.message}</p>
         </div>
-      )}
+      )} */}
 
       {forecast && <Forecast3H forecast={forecast} />}
 
@@ -138,6 +201,7 @@ function App() {
         searchHistory={searchHistory}
         onSelect={fetchWeatherFromHistory}
       />
+
 
     </div>
   )
