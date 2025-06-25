@@ -239,3 +239,46 @@ input[type="text"]:focus {
   transform: translateY(-10px);
   box-shadow: 0 10px 20px rgba(26, 42, 108, 0.3);
 }
+
+/* media query per dispositivi mobili */
+@media (max-width: 600px) {
+  .app-container {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  .input-group {
+    flex-direction: column;
+  }
+
+  input[type="text"],
+  button {
+    width: auto
+  }
+
+  .forecast-grid {
+    gap: 0.5rem;
+  }
+
+  .forecast-card {
+    width: 100px;
+    padding: 0.75rem;
+  }
+
+  .weather-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .weather-info p {
+    font-size: 0.95rem;
+  }
+
+  .search-history-item {
+    font-size: 0.9rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
